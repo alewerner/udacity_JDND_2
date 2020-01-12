@@ -12,6 +12,7 @@ public class Price {
     private BigDecimal price;
 
     private Long vehicleId;
+
     public Price() {
     }
 
