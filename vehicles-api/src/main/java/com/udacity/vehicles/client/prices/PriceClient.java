@@ -36,7 +36,7 @@ public class PriceClient {
             Price price = client
                     .get()
                     .uri(uriBuilder -> uriBuilder
-                            .path("services/price/")
+                            .path("/")
                             .queryParam("vehicleId", vehicleId)
                             .build()
                     )
@@ -54,7 +54,7 @@ public class PriceClient {
         try {
             client.delete()
                     .uri(uriBuilder -> uriBuilder
-                            .path("prices/{id}")
+                            .path("/{id}")
                             .build(vehicleId)
                     )
                     .accept(MediaType.APPLICATION_JSON)

@@ -8,10 +8,23 @@ import java.math.BigDecimal;
 public class Price {
 
     private String currency;
-    private BigDecimal price;
-    private Long vehicleId;
 
+    private BigDecimal price;
+
+    private Long vehicleId;
     public Price() {
+    }
+
+    public Price(String currency, BigDecimal price, Long vehicleId) {
+        this.currency = currency;
+        this.price = price;
+        this.vehicleId = vehicleId;
+    }
+
+    public Price(String price) {
+        String[] priceInfo = price.split(" ");
+        this.currency = priceInfo[0];
+        this.price = new BigDecimal(priceInfo[1]);
     }
 
     public String getCurrency() {
@@ -36,5 +49,14 @@ public class Price {
 
     public void setVehicleId(Long vehicleId) {
         this.vehicleId = vehicleId;
+    }
+
+    @Override
+    public String toString() {
+        return "Price{" +
+                "currency='" + currency + '\'' +
+                ", price=" + price +
+                ", vehicleId=" + vehicleId +
+                '}';
     }
 }
