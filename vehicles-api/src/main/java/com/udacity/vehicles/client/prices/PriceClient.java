@@ -2,6 +2,7 @@ package com.udacity.vehicles.client.prices;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -47,5 +48,20 @@ public class PriceClient {
             log.error("Unexpected error retrieving price for vehicle {}", vehicleId, e);
         }
         return "(consult price)";
+    }
+
+    public void deletePrice(Long vehicleId) {
+        try {
+            client.delete()
+                    .uri(uriBuilder -> uriBuilder
+                            .path("prices/{id}")
+                            .build(vehicleId)
+                    )
+                    .accept(MediaType.APPLICATION_JSON)
+                    .retrieve()
+                    .bodyToMono(Void.class).block();
+        } catch (Exception e) {
+            log.error("Unexpected error deleting price for vehicle {}", vehicleId, e);
+        }
     }
 }
