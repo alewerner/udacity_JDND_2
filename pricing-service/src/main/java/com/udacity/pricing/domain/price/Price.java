@@ -1,19 +1,17 @@
 package com.udacity.pricing.domain.price;
 
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-
-import javax.persistence.Column;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
  * Represents the price of a given vehicle, including currency.
  */
-@EnableEurekaClient
+@Entity
 public class Price {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long vehicleId;
 
