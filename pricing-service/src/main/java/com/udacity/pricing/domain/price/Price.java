@@ -59,19 +59,4 @@ public class Price {
                 ", price=" + price +
                 '}';
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Price)) return false;
-        Price price1 = (Price) o;
-        return Objects.equals(getVehicleId(), price1.getVehicleId()) &&
-                Objects.equals(getCurrency(), price1.getCurrency()) &&
-                Objects.equals(getPrice(), price1.getPrice());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getVehicleId(), getCurrency(), getPrice());
-    }
 }
