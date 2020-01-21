@@ -9,10 +9,9 @@ import java.util.stream.Collectors;
  * Implements a mock repository for generating a random address.
  */
 class MockAddressRepository {
-
     /**
      * Gets a random address from the list.
-     * @return A new, random address split into street, city, state and zip
+     * @return Address
      */
     static Address getRandom() {
 
