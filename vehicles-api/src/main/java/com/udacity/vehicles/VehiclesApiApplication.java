@@ -20,6 +20,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableJpaAuditing
 @EnableSwagger2
+// TODO: 18/01/2020 refactor java doc and document modelMapper
 public class VehiclesApiApplication {
 
     public static void main(String[] args) {
@@ -28,7 +29,7 @@ public class VehiclesApiApplication {
 
     /**
      * Initializes the car manufacturers available to the Vehicle API.
-     * @param repository where the manufacturer information persists.
+     * @param repository
      * @return the car manufacturers to add to the related repository
      */
     @Bean
@@ -42,6 +43,10 @@ public class VehiclesApiApplication {
         };
     }
 
+    /**
+     * ModelMapper to mapper the content
+     * @return ModelMapper
+     */
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();
@@ -49,8 +54,8 @@ public class VehiclesApiApplication {
 
     /**
      * Web Client for the maps (location) API
-     * @param endpoint where to communicate for the maps API
-     * @return created maps endpoint
+     * @param endpoint
+     * @return WebClient
      */
     @Bean(name="maps")
     public WebClient webClientMaps(@Value("${maps.endpoint}") String endpoint) {
@@ -59,8 +64,8 @@ public class VehiclesApiApplication {
 
     /**
      * Web Client for the pricing API
-     * @param endpoint where to communicate for the pricing API
-     * @return created pricing endpoint
+     * @param endpoint
+     * @return WebClient
      */
     @Bean(name="pricing")
     public WebClient webClientPricing(@Value("${pricing.endpoint}") String endpoint) {

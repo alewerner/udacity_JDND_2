@@ -1,7 +1,5 @@
 package com.udacity.vehicles.api;
 
-import com.udacity.vehicles.client.maps.MapsClient;
-import com.udacity.vehicles.client.prices.PriceClient;
 import com.udacity.vehicles.domain.Condition;
 import com.udacity.vehicles.domain.Location;
 import com.udacity.vehicles.domain.car.Car;
@@ -53,12 +51,6 @@ public class CarControllerTest {
     @MockBean
     private CarService carService;
 
-    @MockBean
-    private PriceClient priceClient;
-
-    @MockBean
-    private MapsClient mapsClient;
-
     /**
      * Creates pre-requisites for testing, such as an example car.
      */
@@ -73,7 +65,7 @@ public class CarControllerTest {
 
     /**
      * Tests for successful creation of new car in the system
-     * @throws Exception when car creation fails in the system
+     * @throws Exception
      */
     @Test
     public void createCar() throws Exception {
@@ -88,7 +80,7 @@ public class CarControllerTest {
 
     /**
      * Tests if the read operation appropriately returns a list of vehicles.
-     * @throws Exception if the read operation of the vehicle list fails
+     * @throws Exception
      */
     @Test
     public void listCars() throws Exception {
@@ -145,6 +137,22 @@ public class CarControllerTest {
                 .andExpect(jsonPath("$").doesNotExist());
 
         verify(carService, times(1)).delete(Long.valueOf(1));
+    }
+
+    /**
+     * Test the delete car price operation for a single car ID
+     * */
+    @Test
+    public void getCarPrice() throws Exception {
+        Car car = getCar();
+
+        mvc.perform(get("/cars/1").accept(MediaTypes.HAL_JSON_VALUE))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.details.body", is(car.getDetails().getBody())))
+                .andReturn();
+
+        verify(carService, VerificationModeFactory.times(1)).findById(Long.valueOf(1));
     }
 
     /**

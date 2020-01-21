@@ -11,8 +11,16 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 /**
  * Maps the CarController to the Car class using HATEOAS
  */
+
 @Component
 public class CarResourceAssembler implements ResourceAssembler<Car, Resource<Car>> {
+
+    /**
+     * Converts a Car domain type to a REST resource type.
+     * @param car Car
+     * @return Resource<Car>
+     * @see <a https://www.logicbig.com/tutorials/spring-framework/spring-hateoas/resource-assembler.html</a>
+     * */
 
     @Override
     public Resource<Car> toResource(Car car) {

@@ -35,7 +35,7 @@ class CarController {
 
     /**
      * Creates a list to store any vehicles.
-     * @return list of vehicles
+     * @return Resources<Resource<Car>>
      */
     @GetMapping
     @ApiOperation(value = "Creates a list to store any vehicles")
@@ -47,9 +47,9 @@ class CarController {
     }
 
     /**
-     * Gets information of a specific car by ID.
-     * @param id the id number of the given vehicle
-     * @return all information for the requested vehicle
+     * Gets information of a specific car by ID returing the vehicle.
+     * @param id Long
+     * @return Resource<Car>
      */
     @GetMapping("/{id}")
     @ApiOperation(value = "Gets information of a specific car by ID")
@@ -65,9 +65,9 @@ class CarController {
 
     /**
      * Posts information to create a new vehicle in the system.
-     * @param car A new vehicle to add to the system.
-     * @return response that the new vehicle was added to the system
-     * @throws URISyntaxException if the request contains invalid fields or syntax
+     * @param car Car
+     * @return ResponseEntity<?>
+     * @throws URISyntaxException
      */
     @PostMapping
     @ApiOperation(value = "Save a new vehicle into the system")
@@ -84,9 +84,9 @@ class CarController {
 
     /**
      * Updates the information of a vehicle in the system.
-     * @param id The ID number for which to update vehicle information.
-     * @param car The updated information about the related vehicle.
-     * @return response that the vehicle was updated in the system
+     * @param id
+     * @param car Car
+     * @return ResponseEntity<?>
      */
     @PutMapping("/{id}")
     @ApiOperation(value = "updates the information of a specific vehicle into the system")
@@ -105,8 +105,8 @@ class CarController {
 
     /**
      * Removes a vehicle from the system.
-     * @param id The ID number of the vehicle to remove.
-     * @return response that the related vehicle is no longer in the system
+     * @param id Long
+     * @return ResponseEntity<?>
      */
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Delete a specific vehicle from the system.")

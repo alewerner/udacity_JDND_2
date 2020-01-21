@@ -14,6 +14,7 @@ import java.util.List;
  * information about vehicles, as well as gather related
  * location and price data when desired.
  */
+
 @Service
 public class CarService {
 
@@ -29,7 +30,7 @@ public class CarService {
 
     /**
      * Gathers a list of all vehicles
-     * @return a list of all vehicles in the CarRepository
+     * @return List<Car>
      */
     public List<Car> list() {
         return repository.findAll();
@@ -73,8 +74,8 @@ public class CarService {
 
     /**
      * Either creates or updates a vehicle, based on prior existence of car
-     * @param car A car object, which can be either new or existing
-     * @return the new/updated car is stored in the repository
+     * @param car
+     * @return car Car
      */
     public Car save(Car car) {
         if (car.getId() != null) {
@@ -92,7 +93,7 @@ public class CarService {
 
     /**
      * Deletes a given car by ID
-     * @param id the ID number of the car to delete
+     * @param id
      */
     public void delete(Long id) {
         /**
