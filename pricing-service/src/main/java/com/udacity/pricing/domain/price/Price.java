@@ -2,11 +2,11 @@ package com.udacity.pricing.domain.price;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Objects;
 
 /**
  * Represents the price of a given vehicle, including currency.
  */
+// TODO: 18/01/2020 remove unsed methods and imports and add lombok
 @Entity
 public class Price {
 
