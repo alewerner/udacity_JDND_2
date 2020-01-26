@@ -6,6 +6,7 @@ import com.udacity.vehicles.domain.car.Car;
 import com.udacity.vehicles.domain.car.Details;
 import com.udacity.vehicles.domain.manufacturer.Manufacturer;
 import com.udacity.vehicles.service.CarService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,6 +23,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.net.URI;
+import java.time.LocalDateTime;
 import java.util.Collections;
 
 import static org.hamcrest.Matchers.is;
@@ -119,6 +121,28 @@ public class CarControllerTest {
                 .andExpect(jsonPath("$.details.body", is(car.getDetails().getBody())))
                 .andReturn();
         verify(carService, VerificationModeFactory.times(1)).findById(Long.valueOf(1));
+    }
+
+    /**
+     * Test the update of a single car by ID.
+     * @throws Exception if the update car operation fails
+     * */
+    @Test
+    public void updateCar() throws Exception {
+        LocalDateTime now = LocalDateTime.now();
+        Car car = getCar();
+        car.setCreatedAt(now);
+
+        mvc.perform(
+                put(new URI("/cars/1"))
+                        .content(json.write(car).getJson())
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .accept(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(1)))
+                .andReturn();
+
+        verify(carService, times(1)).save(any(Car.class));
     }
 
     /**
